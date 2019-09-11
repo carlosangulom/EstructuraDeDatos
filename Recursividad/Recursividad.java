@@ -29,6 +29,21 @@ public class Recursividad{
    
    }
    
+   public static int sumaDigRec(int n){
+    
+      if(n==0) return 0;
+      else return sumaDigRec(n/10)+n%10;
+      
+   }
+   
+   public static int numParRec(int a[], int n){
+   
+      if(n<0)return 0;
+      else if(a[n]%2==0)return 1+numParRec(a, n-1);
+      else return numParRec(a,n-1);
+     
+   }
+   
    public static boolean palRec(String palabra, int i, int j){
  
      if(i != (palabra.length()/2)){
@@ -42,13 +57,15 @@ public class Recursividad{
    
    public static void main(String args[]){
    
-      int A[]={1,3,4,5,38,50};
+      int A[]={1,3,4,5,38,51};
       //System.out.println(buscarElementoR(A,38, 0));
       //System.out.print(exponencialRec(2, 32));
       //Ssystem.out.print(factorialRec(5));
-      if(palRec("casac",0, 3))System.out.print("si");
-      else System.out.print("no");
-   
+      //if(palRec("casac",0, 3))System.out.print("si");
+      //else System.out.print("no");
+     //System.out.print(sumaDigRec(123));
+     System.out.print(numParRec(A, A.length-1));
+      
    }
 
 }
