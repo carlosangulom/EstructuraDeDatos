@@ -40,6 +40,12 @@ public class Recursividad{
       return true;
    }
    
+   public static boolean numeroPrimoRec(int num, int c){
+        if(num/2 < c) return true;
+        else if(num%c==0)return false;
+        else return numeroPrimoRec(num, c+1);
+    }
+   
    public static void main(String args[]){
    
       int A[]={1,3,4,5,38,50};
