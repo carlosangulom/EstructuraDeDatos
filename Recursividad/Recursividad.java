@@ -56,9 +56,9 @@ public class Recursividad{
    }
    
    public static boolean numeroPrimoRec(int num, int c){
-        if(num/2 < c) return true;
-        else if(num%c==0)return false;
-        else return numeroPrimoRec(num, c+1);
+        if(num/2 < c){ return true;}
+        else{ if(num%c==0)return false;
+        else return numeroPrimoRec(num, c+1);}
     }
    
    public static void main(String args[]){
@@ -69,8 +69,9 @@ public class Recursividad{
       //Ssystem.out.print(factorialRec(5));
       //if(palRec("casac",0, 3))System.out.print("si");
       //else System.out.print("no");
-     //System.out.print(sumaDigRec(123));
-     System.out.print(numParRec(A, A.length-1));
+      //System.out.print(sumaDigRec(123));
+      //System.out.print(numParRec(A, A.length-1));
+      System.out.print(numeroPrimoRec(5,1));
       
    }
 
