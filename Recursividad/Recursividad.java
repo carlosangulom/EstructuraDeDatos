@@ -44,6 +44,15 @@ public class Recursividad{
      
    }
    
+   public static int cuentaPrimRec(int a[], int n){
+   
+      if(n<0)return 0;
+      else if(numeroPrimoRec(a[n],2)) return 1+cuentaPrimRec(a, n-1);
+      else return cuentaPrimRec(a,n-1);
+
+   
+   }
+   
    public static boolean palRec(String palabra, int i, int j){
  
      if(i != (palabra.length()/2)){
@@ -56,14 +65,15 @@ public class Recursividad{
    }
    
    public static boolean numeroPrimoRec(int num, int c){
-        if(num/2 < c){ return true;}
-        else{ if(num%c==0)return false;
-        else return numeroPrimoRec(num, c+1);}
-    }
+        if(num/2 < c)return true;
+        else if(num%c==0)return false;
+        else return numeroPrimoRec(num, c+1);
+   }
+   
    
    public static void main(String args[]){
    
-      int A[]={1,3,4,5,38,51};
+      int A[]={1,3,4,5,7,38,51};
       //System.out.println(buscarElementoR(A,38, 0));
       //System.out.print(exponencialRec(2, 32));
       //Ssystem.out.print(factorialRec(5));
@@ -71,7 +81,8 @@ public class Recursividad{
       //else System.out.print("no");
       //System.out.print(sumaDigRec(123));
       //System.out.print(numParRec(A, A.length-1));
-      System.out.print(numeroPrimoRec(5,1));
+      //System.out.print(numeroPrimoRec(100,2));
+      System.out.print(cuentaPrimRec(A, A.length-1));
       
    }
 
