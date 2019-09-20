@@ -60,10 +60,26 @@ public class Recursividad{
         else{ if(num%c==0)return false;
         else return numeroPrimoRec(num, c+1);}
     }
+    
+    public static void burbRec(int[] A, int n, int i, int j){
+                int temp = 0;
+                if(i >= n-1)
+                        return;
+                if(j < n - 1){
+                        burbRec(A, n, i, j + 1);
+                        if(A[j] > A[j+1]){
+                                temp = A[j];
+                                A[j] = A[j+1];
+                                A[j+1] = temp;
+                        }
+                }
+                if(j == 0)
+                        burbRec(A, n, i + 1, 0);
+        }
    
    public static void main(String args[]){
    
-      int A[]={1,3,4,5,38,51};
+      int A[]={1,7,4,5,51,10};
       //System.out.println(buscarElementoR(A,38, 0));
       //System.out.print(exponencialRec(2, 32));
       //Ssystem.out.print(factorialRec(5));
@@ -71,7 +87,16 @@ public class Recursividad{
       //else System.out.print("no");
       //System.out.print(sumaDigRec(123));
       //System.out.print(numParRec(A, A.length-1));
-      System.out.print(numeroPrimoRec(5,1));
+      //System.out.print(numeroPrimoRec(5,1));
+      
+      burbRec(A, A.length, 0, 0);
+      
+      for(int i=0; i<A.length;i++){
+      
+         System.out.print("["+A[i]+"]"+" ");
+      
+      }
+      
       
    }
 
