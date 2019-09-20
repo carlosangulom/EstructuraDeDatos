@@ -62,19 +62,17 @@ public class Recursividad{
     }
     
     public static void burbRec(int[] A, int n, int i, int j){
-                int temp = 0;
-                if(i >= n-1)
-                        return;
-                if(j < n - 1){
-                        burbRec(A, n, i, j + 1);
-                        if(A[j] > A[j+1]){
-                                temp = A[j];
-                                A[j] = A[j+1];
-                                A[j+1] = temp;
-                        }
-                }
-                if(j == 0)
-                        burbRec(A, n, i + 1, 0);
+         int temp = 0;
+         if(i >= n-1) return;
+         if(j < n - 1){
+            burbRec(A, n, i, j + 1);
+            if(A[j] > A[j+1]){
+               temp = A[j];
+               A[j] = A[j+1];
+               A[j+1] = temp;
+               }
+             }
+         if(j == 0) burbRec(A, n, i + 1, 0);
         }
    
    public static void main(String args[]){
