@@ -1,4 +1,5 @@
 
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /*
@@ -12,9 +13,9 @@ import static javax.swing.JOptionPane.showMessageDialog;
  * @author SB-D1
  */
 public class ColaCircular {
-    private String C[];
+    public String C[];
     private int c=0;
-    private int tam,inicio,fin;
+    public int tam,inicio,fin;
 
     public ColaCircular() {this.tam=5;inicio=fin=-1;C=new String[tam];}
     public ColaCircular(int tam) {this.tam = tam; inicio=fin=-1;C=new String[tam];}
@@ -34,21 +35,40 @@ public class ColaCircular {
      System.out.println("-----------------------");
    }
     public void push(String d){
-        if(llena())throw new ColaException("Llena");else {
+        /*if(llena())throw new ColaException("Llena");else {
             if(inicio==-1)inicio=0;
-            C[(fin==tam)?fin=0:++fin]=d;}
+            C[(fin==tam)?fin=0:++fin]=d;*/
+        
+        if (llena())throw new ColaException("Llena");
+        else {
+            if (fin == 0 && inicio == -1) {
+                fin = -1;
+            }
+            if (inicio == -1) {
+                inicio = 0;
+            }
+
+            C[(fin == tam - 1) ? fin = 0 : ++fin] = d;
+        }
+    
     }
-//    public void pop(){
-//        if(vacia())showMessageDialog(null,"Vacia");else {
-//            if(fin==-1)fin=0;
-//            if(c==0)C[(inicio==tam)?inicio=0:inicio]=null;
-//            if(c>0)C[(inicio==tam)?inicio=0:inicio++]=null;
-//            c++;
-//        }
-//    }
+       
+   /*public void pop(){
+        if(vacia())showMessageDialog(null,"Vacia");else {
+            if(fin==-1)fin=0;
+            if(c==0)C[(inicio==tam)?inicio=0:inicio]=null;
+           if(c>0)C[(inicio==tam)?inicio=0:inicio++]=null;
+           c++;
+        }
+   }*/
+
     public String pop2(){
             String d=null;
-        if(vacia())throw new ColaException("Vacía");else {
+        if(vacia()){
+            inicio=fin=-1;
+            throw new ColaException("Vacía"); 
+        }
+        else {
             d=C[inicio];
            if(inicio==fin)inicio=fin=-1;else if(inicio==tam-1)inicio=0; else ++inicio;
                 
@@ -71,6 +91,28 @@ public class ColaCircular {
     public int getFin() {
         return fin;
     }
+
+    public void setC(String[] C) {
+        this.C = C;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
+
+    public void setTam(int tam) {
+        this.tam = tam;
+    }
+
+    public void setInicio(int inicio) {
+        this.inicio = inicio;
+    }
+
+    public void setFin(int fin) {
+        this.fin = fin;
+    }
+    
+    
     
     
     

@@ -1,6 +1,15 @@
 
+import com.sun.glass.events.KeyEvent;
+import java.awt.Color;
+import java.awt.EventQueue;
+import javafx.scene.input.KeyCode;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.*;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.MatteBorder;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -20,9 +29,23 @@ public class ColaVentana extends javax.swing.JFrame {
      */
     public ColaVentana() {
         initComponents();
+        
         txtDat.requestFocus();
         m = (DefaultTableModel) tblT.getModel();
+        
+        //Color c = new Color(255,255,255,0);
+        tblT.setBackground(Color.white);
+        tblT.setShowGrid(true);
+        MatteBorder border = new MatteBorder(1, 1, 0, 0, Color.black);
+        tblT.setBorder(border);
+        
+        
+        
+        
         col = new ColaCircular(m.getColumnCount());
+        //tblT.setTableHeader(null);
+        tblT.getTableHeader().setVisible(false);
+        
         tblT.setValueAt("Inicio", 0, 0);
         lblInicio.setText("0");
         lblFin.setText("0");
@@ -48,7 +71,6 @@ public class ColaVentana extends javax.swing.JFrame {
         txtDat = new javax.swing.JTextField();
         btnEmpt = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtTam = new javax.swing.JTextField();
         btnCamb = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -58,6 +80,7 @@ public class ColaVentana extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tblT.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         tblT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Inicio", null, null, null, null},
@@ -65,9 +88,13 @@ public class ColaVentana extends javax.swing.JFrame {
                 {"Fin", null, null, null, null}
             },
             new String [] {
-                "A", "B", "C", "D", "E"
+                "", "", "", "", ""
             }
         ));
+        tblT.setRowHeight(30);
+        tblT.setRowSelectionAllowed(false);
+        tblT.setShowHorizontalLines(false);
+        tblT.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblT);
 
         btnPush.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IMAGENES COLA/login.png"))); // NOI18N
@@ -90,15 +117,27 @@ public class ColaVentana extends javax.swing.JFrame {
 
         jLabel2.setText("Ingresa un dato: ");
 
+        txtDat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDatKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDatKeyTyped(evt);
+            }
+        });
+
         btnEmpt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IMAGENES COLA/empty-cart.png"))); // NOI18N
         btnEmpt.setText("VACIAR");
         btnEmpt.setToolTipText("");
+        btnEmpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmptActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Instituto Tecnologico de Tepic ");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Estructura de Datos- COLAS ");
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("COLAS CIRCULARES");
 
         txtTam.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -125,78 +164,82 @@ public class ColaVentana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEmpt)
-                    .addComponent(btnPush, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(btnPush, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(btnCamb))
+                                    .addComponent(txtTam, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDat, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(txtTam)))
-                    .addComponent(btnPop, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCamb)
-                .addGap(18, 18, 18)
+                        .addComponent(txtDat)))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblInicio))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                        .addGap(38, 38, 38))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblFin)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(283, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(57, 57, 57)))
-                .addGap(273, 273, 273))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnPop, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(btnEmpt)
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblFin, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(lblInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCamb))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCamb)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(14, 14, 14)
-                        .addComponent(btnPush))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(lblInicio))))
+                            .addComponent(btnPush)
+                            .addComponent(btnPop)
+                            .addComponent(btnEmpt)
+                            .addComponent(jLabel5))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPop)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(lblFin)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEmpt)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(lblFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,7 +266,7 @@ public class ColaVentana extends javax.swing.JFrame {
     }
     
     private void validaDato(JTextField txt)throws ColaException{
-        if(txt.getText().length()==0) throw new ColaException("Campo vacío");
+        if(txt.getText().length()==0){txtDat.requestFocus(); throw new ColaException("Campo vacío");}
     }
     
     private boolean validado(JTextField t){
@@ -249,30 +292,37 @@ public class ColaVentana extends javax.swing.JFrame {
     }
     
     private void btnCambMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCambMouseClicked
-        // TODO add your handling code here:
-        col = new ColaCircular(Integer.parseInt(txtTam.getText()));
         if(!validado(txtTam))return;
         int t = Integer.parseInt(txtTam.getText());
         try{
             m.setColumnCount(t);
+            col = new ColaCircular(Integer.parseInt(txtTam.getText()));
+            
         }catch(ColaException err){
             showMessageDialog(this, err.getMessage());
         }
         
     }//GEN-LAST:event_btnCambMouseClicked
 
-    private void btnPushMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPushMouseClicked
+    public void push(){
+        
         btnCamb.setEnabled(false);
         if(!dValidado(txtDat))return;
-        if(col.getFin()==-1 && !col.llena())tblT.setValueAt("", 2, 0);
+        if(col.getInicio()==-1 && !col.llena())tblT.setValueAt("", 2, 0);
         else if(!col.llena())tblT.setValueAt("", 2, col.getFin());
-        
         if(col.getFin()==(m.getColumnCount()-1)){
             try{
                 col.push(txtDat.getText());
                 tblT.setValueAt("Fin", 2, 0);
                 tblT.setValueAt(txtDat.getText(), 1, 0);
                 lblFin.setText(""+col.getFin());
+                if (col.getFin() == 0 && col.getInicio() == -1) {
+                    col.setFin(-1);
+                }
+                if (col.getInicio() == -1) {
+                col.setInicio(0);
+                m.setValueAt("Inicio", 0, 0);
+                }
                 tblT.repaint();
                 txtDat.setText("");
                 txtDat.requestFocus();
@@ -284,9 +334,9 @@ public class ColaVentana extends javax.swing.JFrame {
         else{
             try{
                 col.push(txtDat.getText());
-                //if(col.getFin()==m.getColumnCount()) tblT.setValueAt(txtDat.getText(), 1, 0);
+                if(col.getFin()==m.getColumnCount()) tblT.setValueAt(txtDat.getText(), 1, 0);
                 tblT.setValueAt(txtDat.getText(), 1, col.getFin());
-                //if(col.getFin()==m.getColumnCount()) tblT.setValueAt("Fin", 2, 0);
+                if(col.getFin()==m.getColumnCount()) tblT.setValueAt("Fin", 2, 0);
                 tblT.setValueAt("Fin", 2, col.getFin());
                 lblFin.setText(""+col.getFin());
                 tblT.repaint();
@@ -296,14 +346,23 @@ public class ColaVentana extends javax.swing.JFrame {
                 showMessageDialog(this, err.getMessage());
             }
         }
+        
+    }
+    
+    private void btnPushMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPushMouseClicked
+        push();        
     }//GEN-LAST:event_btnPushMouseClicked
 
     private void btnPopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPopMouseClicked
-        if(col.vacia())return;
+        if(col.vacia()){showMessageDialog(this, "Cola vacía"); eliminar();}
         if(col.getInicio()==col.getFin()){
             try{
+                showMessageDialog(this, "Cola vacía");
                 tblT.setValueAt("", 1, col.getInicio());
-                col.pop2();
+                //col.pop2();
+                //lblInicio.setText(""+col.getInicio());
+                eliminar();
+                tblT.repaint();
             }catch(ColaException ex){
                 showMessageDialog(this, ex.getMessage());
             }
@@ -321,6 +380,39 @@ public class ColaVentana extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnPopMouseClicked
+
+    private void eliminar(){
+        for (int i = 0; i < m.getColumnCount(); i++) {
+         if(!col.vacia())col.pop2();
+         m.setValueAt("", 0, i);
+         m.setValueAt("", 1, i);
+         m.setValueAt("", 2, i);
+        }
+        
+        m.setValueAt("Inicio", 0, 0);
+        m.setValueAt("Fin", 2, 0);
+        btnCamb.setEnabled(true);
+        lblInicio.setText("0");
+        lblFin.setText("0");
+        
+    }
+    
+    private void btnEmptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmptActionPerformed
+        ImageIcon icon = new ImageIcon("src/Imagenes/IMAGENES COLA/empty-cart.png");
+        int res = JOptionPane.showConfirmDialog(this, "Los datos se eliminarán, ¿desea continuar?", "Vaciar tabla", YES_NO_OPTION, INFORMATION_MESSAGE, icon);
+        if(res==0)eliminar();
+        
+    }//GEN-LAST:event_btnEmptActionPerformed
+
+    private void txtDatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDatKeyTyped
+        
+    }//GEN-LAST:event_txtDatKeyTyped
+
+    private void txtDatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDatKeyReleased
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            push();
+        }
+    }//GEN-LAST:event_txtDatKeyReleased
 
     /**
      * @param args the command line arguments
@@ -359,6 +451,8 @@ public class ColaVentana extends javax.swing.JFrame {
     
     public DefaultTableModel m;
     ColaCircular col;
+    //int tam = -1, inicio = -1, fin = -1;
+    //public String C[];
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCamb;
@@ -368,7 +462,6 @@ public class ColaVentana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
