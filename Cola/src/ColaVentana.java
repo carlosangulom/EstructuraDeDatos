@@ -305,7 +305,6 @@ public class ColaVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCambMouseClicked
 
     public void push(){
-        
         btnCamb.setEnabled(false);
         if(!dValidado(txtDat))return;
         if(col.getInicio()==-1 && !col.llena())tblT.setValueAt("", 2, 0);
@@ -349,11 +348,7 @@ public class ColaVentana extends javax.swing.JFrame {
         
     }
     
-    private void btnPushMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPushMouseClicked
-        push();        
-    }//GEN-LAST:event_btnPushMouseClicked
-
-    private void btnPopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPopMouseClicked
+    public void pop(){
         if(col.vacia()){showMessageDialog(this, "Cola vacía"); eliminar();}
         if(col.getInicio()==col.getFin()){
             try{
@@ -379,6 +374,14 @@ public class ColaVentana extends javax.swing.JFrame {
                 showMessageDialog(this, err.getMessage());
             }
         }
+    }
+    
+    private void btnPushMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPushMouseClicked
+        push();        
+    }//GEN-LAST:event_btnPushMouseClicked
+
+    private void btnPopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPopMouseClicked
+        pop();
     }//GEN-LAST:event_btnPopMouseClicked
 
     private void eliminar(){
@@ -410,7 +413,13 @@ public class ColaVentana extends javax.swing.JFrame {
 
     private void txtDatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDatKeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            push();
+            if(txtDat.getText().length()==0){
+                showMessageDialog(this, "Campo vacío");
+                txtDat.transferFocus();return;
+            }else if(col.llena()){
+                showMessageDialog(this, "La cola está llena");
+                txtDat.transferFocus();return;
+            }else push();
         }
     }//GEN-LAST:event_txtDatKeyReleased
 
