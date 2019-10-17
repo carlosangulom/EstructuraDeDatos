@@ -216,7 +216,7 @@ public class VentanaLista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+        eliminar(lblSelec);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
@@ -300,7 +300,7 @@ public class VentanaLista extends javax.swing.JFrame {
             }
             
         }
-        crearLbl(d, posY);
+        crearLbl(d, posY, cont);
         
         //posY=0;
         System.out.println(pnlPrin.getComponentCount() + " Max: " + max);
@@ -324,12 +324,13 @@ public class VentanaLista extends javax.swing.JFrame {
         
     }
         
-    private void obtenerLabel(JLabel l){
+    private void obtenerLabel(JLabel l, int id){
          
         this.labelL = l;
+        this.lblSelec = id;
     }
     
-    private void crearLbl(String t, int posY){
+    private void crearLbl(String t, int posY, int c){
         
         Font f = new Font("Dialog", Font.BOLD, 14);
         
@@ -344,6 +345,7 @@ public class VentanaLista extends javax.swing.JFrame {
         label.setText(t);
         label.setForeground(Color.black);
         label.setLocation(0,posY);
+        int id = c;
         //location = label.getLocation();
         //setLocationDNA(location.y);
         label.setPreferredSize(new Dimension(200, 200));
@@ -356,12 +358,13 @@ public class VentanaLista extends javax.swing.JFrame {
         {  
         public void mouseClicked(MouseEvent e)  
         {  
-            System.out.println("Click en " +t);
+            
             
             lblCad.setText(t);
             lblImgSelec.setIcon(label.getIcon());
             btnEliminar.setEnabled(true);
-            obtenerLabel(label);
+            obtenerLabel(label, id);
+            System.out.println("Click en " +t +" id " +id);
             
         }  
         });
@@ -386,6 +389,22 @@ public class VentanaLista extends javax.swing.JFrame {
             System.err.println("Couldn't find file: " + path);
             return null;
         }
+    }
+    
+    private void eliminar(int id){
+        
+        pnlPrin.remove(id);
+        for (int i = id; i < pnlPrin.getComponentCount(); i++) {
+            System.out.println(pnlPrin.getComponent(i));
+            pnlPrin.getComponent(i).setLocation(0, pnlPrin.getComponent(i).getLocation().y-200);
+            System.out.println(pnlPrin.getComponent(i));
+            pnlPrin.setPreferredSize(new Dimension(pnlPrin.getSize().width,pnlPrin.getSize().height-200));
+        }
+        
+        cont--;
+        pnlPrin.revalidate();
+        pnlPrin.repaint();
+        
     }
     
     private void setLocationDNA(int p){
@@ -413,7 +432,7 @@ public class VentanaLista extends javax.swing.JFrame {
     ListaDoble l = new ListaDoble();
     DocumentFilter filter = new UppercaseDocumentFilter();
     public NodoADN inicio, fin;
-    int cont,max = 0;
+    int cont,max, lblSelec = 0;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrear;
