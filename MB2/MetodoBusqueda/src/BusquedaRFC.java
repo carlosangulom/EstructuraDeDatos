@@ -577,9 +577,9 @@ public class BusquedaRFC extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         int pos = hash(txtRFC.getText());
         
-        if(m.getValueAt(pos, 0)==null){
-            if(c.getValueAt(pos, 0)==null){
-                showMessageDialog(this,"No existe."); 
+        if(!m.getValueAt(pos, 0).toString().equals(txtRFC.getText())){
+            if(!c.getValueAt(pos, 0).equals(txtRFC.getText())){
+                showMessageDialog(this,"No existe.");
                 return;
             }
         }
