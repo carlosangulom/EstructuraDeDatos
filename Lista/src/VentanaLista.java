@@ -401,7 +401,6 @@ public class VentanaLista extends javax.swing.JFrame {
             pnlPrin.setPreferredSize(new Dimension(pnlPrin.getSize().width,pnlPrin.getSize().height-200));
         }
         
-        cont--;
         pnlPrin.revalidate();
         pnlPrin.repaint();
         

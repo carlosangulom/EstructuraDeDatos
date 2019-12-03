@@ -1,3 +1,6 @@
 /Cola/build/
 /Cola/dist/
 *.rar
+/Lista/build/
+/Lista/dist/
+/Lista/nbproject/private/
