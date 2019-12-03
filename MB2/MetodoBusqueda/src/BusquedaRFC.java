@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showConfirmDialog;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +34,7 @@ public class BusquedaRFC extends javax.swing.JFrame {
     public BusquedaRFC() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setSize(940, 830);
         m = (DefaultTableModel) tblRFC.getModel();
         c = (DefaultTableModel) tblColisiones.getModel();
         
@@ -47,6 +50,8 @@ public class BusquedaRFC extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
         btnGenerarAl = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -65,16 +70,40 @@ public class BusquedaRFC extends javax.swing.JFrame {
         tblColisiones = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("RFC");
+        setBackground(new java.awt.Color(78, 170, 110));
+        setSize(new java.awt.Dimension(1000, 1000));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+        getContentPane().setLayout(null);
 
+        jPanel1.setBackground(new java.awt.Color(69, 178, 251));
+        jPanel1.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Leelawadee UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(245, 245, 245));
+        jLabel1.setText("REGISTRO FEDERAL DE CONTRIBUYENTES");
+
+        btnGenerarAl.setFont(new java.awt.Font("Leelawadee UI", 1, 14)); // NOI18N
+        btnGenerarAl.setForeground(new java.awt.Color(245, 245, 245));
         btnGenerarAl.setText("RFC Aleatorio");
+        btnGenerarAl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(245, 245, 245), 3));
+        btnGenerarAl.setContentAreaFilled(false);
+        btnGenerarAl.setOpaque(false);
         btnGenerarAl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarAlActionPerformed(evt);
             }
         });
 
+        tblRFC.setFont(new java.awt.Font("Leelawadee UI", 0, 14)); // NOI18N
         tblRFC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -179,20 +208,33 @@ public class BusquedaRFC extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "RFC", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimientoa"
+                "RFC", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento"
             }
         ));
         jScrollPane1.setViewportView(tblRFC);
 
+        lblNomT.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        lblNomT.setForeground(new java.awt.Color(245, 245, 245));
         lblNomT.setText("Nombre:");
 
+        lblApPT.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        lblApPT.setForeground(new java.awt.Color(245, 245, 245));
         lblApPT.setText("Apellido Paterno:");
 
+        lblApMT.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        lblApMT.setForeground(new java.awt.Color(245, 245, 245));
         lblApMT.setText("Apellido Materno:");
 
+        lblFNT.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        lblFNT.setForeground(new java.awt.Color(245, 245, 245));
         lblFNT.setText("Fecha de Nacimiento:");
 
+        btnGuardar.setFont(new java.awt.Font("Leelawadee UI", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(245, 245, 245));
         btnGuardar.setText("Guardar");
+        btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(245, 245, 245), 3));
+        btnGuardar.setContentAreaFilled(false);
+        btnGuardar.setOpaque(false);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -202,6 +244,11 @@ public class BusquedaRFC extends javax.swing.JFrame {
         txtNom.setNextFocusableComponent(txtAP);
 
         txtAP.setNextFocusableComponent(txtAM);
+        txtAP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAPActionPerformed(evt);
+            }
+        });
 
         txtAM.setNextFocusableComponent(txtFN);
         txtAM.addActionListener(new java.awt.event.ActionListener() {
@@ -210,13 +257,18 @@ public class BusquedaRFC extends javax.swing.JFrame {
             }
         });
 
+        btnGenerarBN.setFont(new java.awt.Font("Leelawadee UI", 1, 14)); // NOI18N
+        btnGenerarBN.setForeground(new java.awt.Color(245, 245, 245));
         btnGenerarBN.setText("Generar");
+        btnGenerarBN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(245, 245, 245), 3));
+        btnGenerarBN.setContentAreaFilled(false);
         btnGenerarBN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarBNActionPerformed(evt);
             }
         });
 
+        tblColisiones.setFont(new java.awt.Font("Leelawadee UI", 0, 14)); // NOI18N
         tblColisiones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -321,116 +373,150 @@ public class BusquedaRFC extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "RFC", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimientoa"
+                "RFC", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento"
             }
         ));
         jScrollPane2.setViewportView(tblColisiones);
 
+        btnBuscar.setFont(new java.awt.Font("Leelawadee UI", 1, 14)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(245, 245, 245));
         btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(245, 245, 245), 3));
+        btnBuscar.setContentAreaFilled(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
 
+        btnSalir.setFont(new java.awt.Font("Leelawadee UI", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(245, 245, 245));
         btnSalir.setText("Salir");
+        btnSalir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(245, 245, 245), 3));
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.setOpaque(false);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnGenerarAl)
-                                    .addComponent(btnGenerarBN, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnGuardar)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblApPT)
-                                    .addComponent(lblNomT))
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblFNT)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFN, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(23, 23, 23)
+        jLabel2.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(245, 245, 245));
+        jLabel2.setText("RFC:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(lblApPT)
+                                                    .addComponent(lblNomT))
+                                                .addGap(7, 7, 7))
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(11, 11, 11)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(11, 11, 11))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblApMT)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(84, 84, 84))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnSalir)
-                        .addGap(19, 19, 19))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(14, 14, 14))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblFNT)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtFN, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnGenerarAl, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(btnGenerarBN, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnGenerarAl)
-                            .addComponent(btnGuardar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBuscar)
-                            .addComponent(btnGenerarBN))
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNomT)
-                            .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addComponent(lblApPT))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblApMT))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFNT))))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jLabel1)
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(btnGenerarAl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGenerarBN, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(32, 32, 32)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblNomT)
+                                .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblApPT)
+                                .addComponent(txtAP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblApMT)
+                            .addComponent(txtAM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblFNT)
+                            .addComponent(txtFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSalir)
-                .addGap(15, 15, 15))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 930, 830);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg4.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 940, 830);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -449,8 +535,8 @@ public class BusquedaRFC extends javax.swing.JFrame {
         
         int pos = hash(txtRFC.getText());
         
-        if(m.getValueAt(pos, 0)!=null){
-            if(c.getValueAt(pos, 0)!=null)pos++;
+        if(!m.getValueAt(pos, 0).toString().equals(" ")){
+            if(!c.getValueAt(pos, 0).toString().equals(" "))pos++;
             c.setValueAt(txtRFC.getText(), pos, 0);
             c.setValueAt(txtNom.getText(), pos, 1);
             c.setValueAt(txtAP.getText(), pos, 2);
@@ -506,9 +592,9 @@ public class BusquedaRFC extends javax.swing.JFrame {
             txtFN.setText("");
         
             txtRFC.setText(m.getValueAt(pos, 0).toString());
-            txtAP.setText(m.getValueAt(pos, 1).toString());
-            txtAM.setText(m.getValueAt(pos, 2).toString());
-            txtNom.setText(m.getValueAt(pos, 3).toString());
+            txtAP.setText(m.getValueAt(pos, 2).toString());
+            txtAM.setText(m.getValueAt(pos, 3).toString());
+            txtNom.setText(m.getValueAt(pos, 1).toString());
             txtFN.setText(m.getValueAt(pos, 4).toString());
             tblRFC.changeSelection(pos, pos, false, false);
         }else{
@@ -519,9 +605,9 @@ public class BusquedaRFC extends javax.swing.JFrame {
             txtFN.setText("");
         
             txtRFC.setText(c.getValueAt(pos, 0).toString());
-            txtAP.setText(c.getValueAt(pos, 1).toString());
-            txtAM.setText(c.getValueAt(pos, 2).toString());
-            txtNom.setText(c.getValueAt(pos, 3).toString());
+            txtAP.setText(c.getValueAt(pos, 2).toString());
+            txtAM.setText(c.getValueAt(pos, 3).toString());
+            txtNom.setText(c.getValueAt(pos, 1).toString());
             txtFN.setText(c.getValueAt(pos, 4).toString());
             tblColisiones.changeSelection(pos, pos, false, false);
         }
@@ -529,9 +615,25 @@ public class BusquedaRFC extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        guardarArchivos();
-        System.exit(0);
+        cerrar();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    public void cerrar(){
+        guardarArchivos();
+        guardarCol();
+        System.exit(0);
+    }
+    
+    private void txtAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAPActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int res = showConfirmDialog(this, "¿Desea guardar los datos?", "Cerrando ventana", JOptionPane.YES_NO_OPTION);
+        if(res==0){
+            cerrar();
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     
     /**
@@ -660,30 +762,60 @@ public class BusquedaRFC extends javax.swing.JFrame {
             fs=new java.io.FileWriter("rfc_g.txt");
               for (int i = 0; i < m.getRowCount(); i++) {
                   if(m.getValueAt(i, 0)!=null)rfc=new RFC(m.getValueAt(i, 0).toString(),m.getValueAt(i, 1).toString(),m.getValueAt(i, 2).toString(),m.getValueAt(i, 3).toString(),m.getValueAt(i, 4).toString());
-                  else rfc=new RFC("","","","","");
+                  else rfc=new RFC(" "," "," "," "," ");
                   rfc.guardar(fs);
               }
-            fc=new java.io.FileWriter("Colisiones.txt");
-                for (int i = 0; i < c.getRowCount(); i++) {
-                if(c.getValueAt(i, 0)!=null)rfc=new RFC(c.getValueAt(i, 0).toString(),c.getValueAt(i, 1).toString(),c.getValueAt(i, 2).toString(),c.getValueAt(i, 3).toString(),c.getValueAt(i, 4).toString());
-                  else rfc=new RFC("","","","","");
-                  rfc.guardar(fs);
-            }
+              
+            
         } catch (IOException ex) {
              showMessageDialog(this, ex.getMessage());
+        }
+       
+        
+       
+    }
+    
+    public void guardarCol(){
+        try {
+            fileWr = new java.io.FileWriter("col.txt");
+            for (int i = 0; i < 100; i++) {
+                if(c.getValueAt(i, 0)!=null)colision = new RFC(c.getValueAt(i, 0).toString(), c.getValueAt(i, 1).toString(), c.getValueAt(i, 2).toString(), c.getValueAt(i, 3).toString(), c.getValueAt(i, 4).toString());
+                else colision = new RFC(" ", " ", " ", " ", " ");
+                
+                colision.guardar(fileWr);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(BusquedaRFC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void llenarTablas(){
         try {
             FileRead = new java.io.FileReader("rfc_g.txt");
+            coli = new java.io.FileReader("col.txt");
             buff = new java.io.BufferedReader(FileRead);
-            String rfc = "";
+            buffcol = new java.io.BufferedReader(coli);
+            String rfc = "", colis="";
             
             for (int i = 0; i < 100; i++) {
-                rfc=buff.readLine();
+                rfc=buff.readLine().toString();
+                colis=buffcol.readLine();
                 String G[] = rfc.split("\\:");
-                System.out.println(G.length);
+                String R[] = colis.split("\\:");
+                
+                //System.out.println(R.length);
+                
+                m.setValueAt(G[0], i, 0);
+                m.setValueAt(G[1], i, 1);
+                m.setValueAt(G[2], i, 2);
+                m.setValueAt(G[3], i, 3);
+                m.setValueAt(G[4], i, 4);
+                
+                c.setValueAt(R[0], i, 0);
+                c.setValueAt(R[1], i, 1);
+                c.setValueAt(R[2], i, 2);
+                c.setValueAt(R[3], i, 3);
+                c.setValueAt(R[4], i, 4);
             }
             
         } catch (FileNotFoundException ex) {
@@ -759,11 +891,11 @@ public class BusquedaRFC extends javax.swing.JFrame {
 
     Random R = new Random();
     int D[] = {00,31,28,31,30,31,30,31,31,30,31,30,31};
-    private java.io.FileWriter fs, fc; 
-    private java.io.FileReader fe, FileRead; 
-    private java.io.BufferedReader br, buff;
+    private java.io.FileWriter fs, fc, fileWr; 
+    private java.io.FileReader fe, FileRead, coli; 
+    private java.io.BufferedReader br, buff, buffcol;
     DefaultTableModel m, c;
-    RFC rfc;
+    RFC rfc, colision;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -771,6 +903,10 @@ public class BusquedaRFC extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerarBN;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblApMT;
