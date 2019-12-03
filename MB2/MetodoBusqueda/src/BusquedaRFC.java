@@ -530,8 +530,14 @@ public class BusquedaRFC extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenerarAlActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-      
-        if(txtRFC.getText().equals("") || txtNom.getText().equals("") || txtAP.getText().equals("") || txtAM.getText().equals("") || txtFN.getText().equals("")){ showMessageDialog(this, "Campos vacíos"); return;}
+        
+        try{
+            revisarCampos();
+        }catch(RFCException err){
+            showMessageDialog(this, err.getMessage());
+            return;
+        }
+        if(buscarRep()){ showMessageDialog(this, "RFC existente."); return;}
         
         int pos = hash(txtRFC.getText());
         
@@ -565,6 +571,14 @@ public class BusquedaRFC extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAMActionPerformed
 
+    public void revisarCampos() throws RFCException{
+        if(txtRFC.getText().equals("") || txtNom.getText().equals("") || txtAP.getText().equals("") || txtAM.getText().equals("") || txtFN.getText().equals("")){ throw new RFCException("Campos vacíos");}
+        if(txtNom.getText().matches(".*\\d.*")){throw new RFCException("Solo letras en el nombre.");}
+        if(txtAP.getText().matches(".*\\d.*")){throw new RFCException("Solo letras en el apellido paterno.");}
+        if(txtAM.getText().matches(".*\\d.*")){throw new RFCException("Solo letras en el apellido materno.");}
+        if(!txtFN.getText().matches("^\\d{2}\\-{1}\\d{2}\\-{1}\\d{4}")){throw new RFCException("Fecha debe estar en dd-mm-aaaa");}
+    }
+    
     private void btnGenerarBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarBNActionPerformed
         if(txtRFC.getText().equals("") || txtNom.getText().equals("") || txtAP.getText().equals("") || txtAM.getText().equals("") || txtFN.getText().equals("")){ showMessageDialog(this, "Campos vacíos"); return;}
         String pc = primerosCuatroCaracteresRFC(txtNom.getText(), txtAP.getText(), txtAM.getText());
@@ -574,8 +588,23 @@ public class BusquedaRFC extends javax.swing.JFrame {
         txtRFC.setText(pc+a+fn[1]+fn[0]+mnc);
     }//GEN-LAST:event_btnGenerarBNActionPerformed
 
+    public boolean buscarRep(){
+        
+        int pos = hash(txtRFC.getText());
+        
+        if(!m.getValueAt(pos, 0).toString().equals(txtRFC.getText())){
+            if(!c.getValueAt(pos, 0).equals(txtRFC.getText())){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         int pos = hash(txtRFC.getText());
+        
+        if(txtRFC.getText().equals("")){showMessageDialog(this, "Campo vacío."); return;}
         
         if(!m.getValueAt(pos, 0).toString().equals(txtRFC.getText())){
             if(!c.getValueAt(pos, 0).equals(txtRFC.getText())){
@@ -711,6 +740,7 @@ public class BusquedaRFC extends javax.swing.JFrame {
             if(m<10)mes ="0"+m;
             else mes =""+m;
             int d = A.nextInt(D[m]);
+            if(d==0)d++;
             if(d<10)dia = "0"+d;
             else dia = ""+d;
             
