@@ -45,6 +45,25 @@
  : : : : 
  : : : : 
  : : : : 
+BAAM300818M13:MANUEL ANTONIO:BAEZA:AYALA:18-08-1930
+ : : : : 
+ : : : : 
+ : : : : 
+ : : : : 
+ : : : : 
+ : : : : 
+ : : : : 
+GARG2005032OQ:GERARDO DE JESUS:GARCIA:RIVAS:03-05-1920
+ : : : : 
+ : : : : 
+ : : : : 
+BAAM630527S9Z:MANUEL ANTONIO:BAEZA:AYALA:27-05-1963
+DOCJ1009087RZ:JUDITH GUADALUPE:DOMINGUEZ:CARRILLO:08-09-1910
+AIVJ660115NHI:JORGE ARTURO:AVINA:VALENCIA:15-01-1966
+ : : : : 
+BAAM620110WWY:MANUEL ANTONIO:BAEZA:AYALA:10-01-1962
+ : : : : 
+DOCJ360821OUT:JUDITH GUADALUPE:DOMINGUEZ:CARRILLO:21-08-1936
  : : : : 
  : : : : 
  : : : : 
@@ -57,26 +76,7 @@
  : : : : 
  : : : : 
  : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
+DOCJ1009087ZRZ:HUGO RICARDO:DOMINGUEZ:MALAGON:05-06-1912
  : : : : 
  : : : : 
  : : : : 

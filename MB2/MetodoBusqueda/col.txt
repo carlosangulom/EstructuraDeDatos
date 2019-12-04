@@ -53,13 +53,13 @@
  : : : : 
  : : : : 
  : : : : 
+AAGH2303256VN:HIGINIO:ARZATE:GONZALEZ:25-03-1923
+DOCL490121Q6B:LUIS GERARDO:DOMINGUEZ:CARRILLO:21-01-1949
  : : : : 
  : : : : 
  : : : : 
- : : : : 
- : : : : 
- : : : : 
- : : : : 
+BAFL450622SXC:JOSE LUIS:BARRERA:FRANCO:22-06-1945
+BAAM470922FRT:MANUEL ANTONIO:BAEZA:AYALA:22-09-1947
  : : : : 
  : : : : 
  : : : : 

@@ -593,8 +593,21 @@ public class BusquedaRFC extends javax.swing.JFrame {
         int pos = hash(txtRFC.getText());
         
         if(!m.getValueAt(pos, 0).toString().equals(txtRFC.getText())){
-            if(!c.getValueAt(pos, 0).equals(txtRFC.getText())){
-                return false;
+            if(c.getValueAt(pos+1, 0).toString().equals(" ")){
+                if(!c.getValueAt(pos, 0).equals(txtRFC.getText())){
+                    showMessageDialog(this,"No existe.");
+                    return false;
+                }
+            }else{
+                while(!c.getValueAt(pos+1, 0).toString().equals(" ")){
+                    if(!c.getValueAt(pos+1, 0).equals(txtRFC.getText())){
+                        showMessageDialog(this,"No existe.");
+                        return false;
+                    }else{
+                        pos++;
+                    }
+                }
+                                
             }
         }
         
@@ -607,9 +620,21 @@ public class BusquedaRFC extends javax.swing.JFrame {
         if(txtRFC.getText().equals("")){showMessageDialog(this, "Campo vacío."); return;}
         
         if(!m.getValueAt(pos, 0).toString().equals(txtRFC.getText())){
-            if(!c.getValueAt(pos, 0).equals(txtRFC.getText())){
-                showMessageDialog(this,"No existe.");
-                return;
+            if(c.getValueAt(pos+1, 0).toString().equals(" ")){
+                if(!c.getValueAt(pos, 0).equals(txtRFC.getText())){
+                    showMessageDialog(this,"No existe.");
+                    return;
+                }
+            }else{
+                while(!c.getValueAt(pos+1, 0).toString().equals(" ")){
+                    if(!c.getValueAt(pos+1, 0).equals(txtRFC.getText())){
+                        showMessageDialog(this,"No existe.");
+                        return;
+                    }else{
+                        pos++;
+                    }
+                }
+                                
             }
         }
         
@@ -733,7 +758,7 @@ public class BusquedaRFC extends javax.swing.JFrame {
             String monoclave="", fechaN="", año, dia, mes;
             Random A  = new Random();
             
-            int a = A.nextInt(89)+10;
+            int a = A.nextInt(69)+30;
             año = ""+a;
             int m = A.nextInt(12);
             if(m==0)m++;
