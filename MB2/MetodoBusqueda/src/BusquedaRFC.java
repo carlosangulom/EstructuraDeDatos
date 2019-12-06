@@ -96,7 +96,6 @@ public class BusquedaRFC extends javax.swing.JFrame {
         btnGenerarAl.setText("RFC Aleatorio");
         btnGenerarAl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(245, 245, 245), 3));
         btnGenerarAl.setContentAreaFilled(false);
-        btnGenerarAl.setOpaque(false);
         btnGenerarAl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarAlActionPerformed(evt);
@@ -234,7 +233,6 @@ public class BusquedaRFC extends javax.swing.JFrame {
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(245, 245, 245), 3));
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setOpaque(false);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -394,7 +392,6 @@ public class BusquedaRFC extends javax.swing.JFrame {
         btnSalir.setText("Salir");
         btnSalir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(245, 245, 245), 3));
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setOpaque(false);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -595,13 +592,13 @@ public class BusquedaRFC extends javax.swing.JFrame {
         if(!m.getValueAt(pos, 0).toString().equals(txtRFC.getText())){
             if(c.getValueAt(pos+1, 0).toString().equals(" ")){
                 if(!c.getValueAt(pos, 0).equals(txtRFC.getText())){
-                    showMessageDialog(this,"No existe.");
+                    //showMessageDialog(this,"No existe.");
                     return false;
                 }
             }else{
                 while(!c.getValueAt(pos+1, 0).toString().equals(" ")){
                     if(!c.getValueAt(pos+1, 0).equals(txtRFC.getText())){
-                        showMessageDialog(this,"No existe.");
+                        //showMessageDialog(this,"No existe.");
                         return false;
                     }else{
                         pos++;
